@@ -39,12 +39,16 @@ std::string from_X_to_10(std::string value, int base) {
 };
 
 int main(int argc, char const *argv[]) {
-    std::string init = "32DFE";
-    std::string a = from_X_to_10(init, 16);
-    std::string b = from_10_to_X(a, 16);
+    if(argc != 4) {
+        std::cout << "Please give 3 arguments (value, base1, base2)\n";
+        return 0;
+    }
+    std::string value = argv[1];
+    int base1 = std::stoi(argv[2]);
+    int base2 = std::stoi(argv[3]);
 
-    std::cout << "init value = " << init << "\n"; 
-    std::cout << "a value = " << a << "\n"; 
-    std::cout << "b value = " << b << "\n";
+    std::string result = from_X_to_10(value, base1);
+    result = from_10_to_X(result, base2);
+    std::cout << result << "\n";
     return 0;
 }
