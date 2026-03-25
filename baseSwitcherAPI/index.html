@@ -2,8 +2,8 @@
 <html>
 <body>
   <input type="text" id="value" placeholder="value" />
-  <input type="text" id="base1" placeholder="base1" />
-  <input type="text" id="base2" placeholder="base2" />
+  <input type="number" id="base1" step="1" min="2" max="20" required>
+  <input type="number" id="base2" step="1" min="2" max="20" required>
 
   <button onclick="convert()">Convert</button>
 
@@ -12,8 +12,8 @@
   <script>
     function convert() {
       const value = document.getElementById("value").value;
-      const base1 = parseInt(document.getElementById("base1").value);
-      const base2 = parseInt(document.getElementById("base2").value);
+      const base1 = document.getElementById("base1").value;
+      const base2 = document.getElementById("base2").value;
 
       fetch("http://localhost:5555/convert", {
         method: "POST",
@@ -21,9 +21,9 @@
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          value: value,
-          base1: base1,
-          base2: base2
+            value: value,
+            base1: Number(base1),
+            base2: Number(base2)
         })
       })
       .then(res => res.json())
