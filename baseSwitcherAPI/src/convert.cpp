@@ -37,6 +37,14 @@ std::string from_X_to_10(std::string value, int base) {
     }
     return std::to_string(result);
 };
+
+
+std::string from_X_to_Y(std::string value, int baseX, int baseY) {
+    std::string result = from_X_to_10(value, baseX);
+    result = from_10_to_X(result, baseY);
+    return result;
+}
+
 /*
 int main(int argc, char const *argv[]) {
     if(argc != 4) {

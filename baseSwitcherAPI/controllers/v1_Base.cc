@@ -1,7 +1,7 @@
 #include "v1_Base.h"
 #include <iostream>
 
-#include "../src/index.h"
+#include "../src/convert.h"
 using namespace v1;
 
 // curl -X POST "http://localhost:5555/v1/Base/?value=1011&base1=2&base2=10"
@@ -18,7 +18,7 @@ void Base::convert(const HttpRequestPtr &req,
     {
         auto resp = HttpResponse::newHttpResponse();
         resp->setStatusCode(k400BadRequest);
-        resp->setBody("Invalid JSON");
+        resp->setBody("JSON is missing");
         callback(resp);
         return;
     }

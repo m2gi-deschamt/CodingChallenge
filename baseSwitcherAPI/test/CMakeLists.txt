@@ -1,14 +1,16 @@
 cmake_minimum_required(VERSION 3.5)
 project(baseSwitcherAPI_test CXX)
 
-add_executable(${PROJECT_NAME} test_main.cc)
+# Crée l'exécutable de test
+add_executable(${PROJECT_NAME} test_main.cc test_convert.cpp)
 
-# ##############################################################################
-# If you include the drogon source code locally in your project, use this method
-# to add drogon 
-# target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
-#
-# and comment out the following lines
+# Inclure le dossier src pour voir les headers
+target_include_directories(${PROJECT_NAME} PRIVATE ../src)
+
+# Lier le fichier source contenant from_X_to_10
+target_sources(${PROJECT_NAME} PRIVATE ../src/convert.cpp)
+
+# Lier Drogon
 target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
 
 ParseAndAddDrogonTests(${PROJECT_NAME})
